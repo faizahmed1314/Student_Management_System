@@ -7,6 +7,8 @@ using System.Net;
 using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 using StudentManagementSystem.Models;
 
 namespace StudentManagementSystem.Controllers
@@ -16,10 +18,21 @@ namespace StudentManagementSystem.Controllers
         private StudentManagementSystemEntities db = new StudentManagementSystemEntities();
 
         // GET: /Registration/
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search,int? page)
         {
-            var registrations = db.Registrations.Include(r => r.Batch).Include(r => r.Course);
-            return View(registrations.ToList());
+            
+            //include paging to show the index value
+
+            if (searchBy == "Gender")
+            {
+                return View(db.Registrations.Where(x => x.gender == search || search == null).ToList().ToPagedList(page ?? 1,3));
+            }
+            else
+            {
+                return View(db.Registrations.Where(x=>x.firstname.StartsWith(search)|| search==null).ToList().ToPagedList(page ?? 1,3));
+            }
+            //var registrations = db.Registrations.Include(r => r.Batch).Include(r => r.Course);
+            //return View(registrations.ToList());
         }
 
         // GET: /Registration/Details/5
@@ -53,6 +66,8 @@ namespace StudentManagementSystem.Controllers
             }
             
             ViewBag.course_id = coursSelectListItems;
+
+            //db data--key--value--selected Item value
 
             ViewBag.batch_id = new SelectList(db.Batches, "id", "batch1", "1");
 
@@ -100,7 +115,7 @@ namespace StudentManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,firstname,lastname,nic,Date,batch_id,course_id,phone")] Registration registration)
+        public ActionResult Edit([Bind(Include="id,firstname,lastname,nic,Date,batch_id,course_id,phone,email,gender,salary")] Registration registration)
         {
             if (ModelState.IsValid)
             {

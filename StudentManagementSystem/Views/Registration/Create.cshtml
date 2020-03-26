@@ -1,18 +1,18 @@
-﻿@model StudentManagementSystem.Models.Registration
+﻿
+@model StudentManagementSystem.Models.Registration
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>New Registration</h2>
-
+<h2>Create</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        
+        <h4>Registration</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -49,9 +49,9 @@
         </div>
 
         <div class="form-group">
-            @Html.Label( "course_id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.course_id, "course_id", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("course_id","Select Course")
+                @Html.DropDownList("course_id", "Select Course")
                 @Html.ValidationMessageFor(model => model.course_id)
             </div>
         </div>
@@ -63,6 +63,7 @@
                 @Html.ValidationMessageFor(model => model.phone)
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -72,8 +73,45 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.salary, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.salary)
+                @Html.ValidationMessageFor(model => model.salary)
+            </div>
+        </div>
+
+       
+        <div class="form-group">
+            @Html.LabelFor(model => model.gender, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Gender",new List<SelectListItem>
+                {
+                    new SelectListItem(){Text = "Male", Value = "1"},
+                    new SelectListItem(){Text = "Female", Value = "2"}
+                }, "Select Gender")
+                @Html.ValidationMessageFor(model => model.gender)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email)
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.personalWebsite, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.personalWebsite)
+                @Html.ValidationMessageFor(model => model.personalWebsite)
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </div>
     </div>
@@ -82,7 +120,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

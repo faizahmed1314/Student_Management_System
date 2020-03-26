@@ -27,6 +27,7 @@ namespace StudentManagementSystem.Models
         public string lastname { get; set; }
 
         [DisplayFormat(NullDisplayText = "Gender is not specified!")]
+        [DisplayName("Gender")]
         public string gender { get; set; }
 
         [Display(Name = "National Id")]
@@ -49,13 +50,16 @@ namespace StudentManagementSystem.Models
         [DataType(DataType.Date)]
         public Nullable<DateTime> Date { get; set; }
 
+        [DisplayName("Salary")]
         [ScaffoldColumn(true)]
         [DataType(DataType.Currency)]
         public int? salary { get; set; }
 
+        [DisplayName("Email")]
         [DataType(DataType.EmailAddress)]
         public string email { get; set; }
 
+        [DisplayName("Personal Website")]
         [DataType(DataType.Url)]
         [UIHint("OpenInNewWindow")]
         public string personalWebsite { get; set; }

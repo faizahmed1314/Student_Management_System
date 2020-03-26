@@ -6,7 +6,6 @@
 
 <h2>Edit</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -40,13 +39,6 @@
                 @Html.ValidationMessageFor(model => model.nic)
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Date)
-                @Html.ValidationMessageFor(model => model.Date)
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.batch_id, "batch_id", new { @class = "control-label col-md-2" })
@@ -73,8 +65,50 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date)
+                @Html.ValidationMessageFor(model => model.Date)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.salary, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.salary)
+                @Html.ValidationMessageFor(model => model.salary)
+            </div>
+        </div>
+
+      
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.gender, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.gender)
+                @Html.ValidationMessageFor(model => model.gender)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email)
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.personalWebsite, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.personalWebsite)
+                @Html.ValidationMessageFor(model => model.personalWebsite)
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </div>
     </div>
@@ -83,7 +117,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
