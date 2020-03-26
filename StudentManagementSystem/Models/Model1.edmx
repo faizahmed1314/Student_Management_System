@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StudentManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="StudentManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Batch">
           <Key>
             <PropertyRef Name="id" />
@@ -20,6 +20,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="course" Type="varchar" MaxLength="50" />
           <Property Name="duration" Type="int" />
+          <Property Name="IsSelected" Type="bit" />
         </EntityType>
         <EntityType Name="Registration">
           <Key>
@@ -32,6 +33,13 @@
           <Property Name="batch_id" Type="int" />
           <Property Name="course_id" Type="int" />
           <Property Name="phone" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="salary" Type="int" />
+          <Property Name="photo" Type="nvarchar" MaxLength="100" />
+          <Property Name="alternateText" Type="nvarchar" MaxLength="50" />
+          <Property Name="gender" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="personalWebsite" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -81,8 +89,7 @@
             <End Role="Registration" EntitySet="Registration" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StudentManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -103,6 +110,7 @@
           <Property Name="course1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="duration" Type="Int32" />
           <NavigationProperty Name="Registrations" Relationship="Self.FK_Registration_Course" FromRole="Course" ToRole="Registration" />
+          <Property Name="IsSelected" Type="Boolean" />
         </EntityType>
         <EntityType Name="Registration">
           <Key>
@@ -117,6 +125,13 @@
           <Property Name="phone" Type="Int32" />
           <NavigationProperty Name="Batch" Relationship="Self.FK_Registration_Batch" FromRole="Registration" ToRole="Batch" />
           <NavigationProperty Name="Course" Relationship="Self.FK_Registration_Course" FromRole="Registration" ToRole="Course" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="salary" Type="Int32" />
+          <Property Name="photo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="alternateText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="personalWebsite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -184,6 +199,7 @@
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="StudentManagementSystemModel.Course">
               <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="course1" ColumnName="course" />
                 <ScalarProperty Name="duration" ColumnName="duration" />
@@ -193,6 +209,13 @@
           <EntitySetMapping Name="Registrations">
             <EntityTypeMapping TypeName="StudentManagementSystemModel.Registration">
               <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="personalWebsite" ColumnName="personalWebsite" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="alternateText" ColumnName="alternateText" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
                 <ScalarProperty Name="lastname" ColumnName="lastname" />

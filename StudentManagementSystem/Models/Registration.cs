@@ -21,6 +21,13 @@ namespace StudentManagementSystem.Models
         public Nullable<int> batch_id { get; set; }
         public Nullable<int> course_id { get; set; }
         public Nullable<int> phone { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<int> salary { get; set; }
+        public string photo { get; set; }
+        public string alternateText { get; set; }
+        public string gender { get; set; }
+        public string email { get; set; }
+        public string personalWebsite { get; set; }
     
         public virtual Batch Batch { get; set; }
         public virtual Course Course { get; set; }

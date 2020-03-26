@@ -43,15 +43,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.batch_id, "batch_id", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("batch_id", String.Empty)
+                @Html.DropDownList("batch_id", "Select Batch")
                 @Html.ValidationMessageFor(model => model.batch_id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.course_id, "course_id", new { @class = "control-label col-md-2" })
+            @Html.Label( "course_id", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("course_id", String.Empty)
+                @Html.DropDownList("course_id","Select Course")
                 @Html.ValidationMessageFor(model => model.course_id)
             </div>
         </div>
@@ -61,6 +61,13 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.phone)
                 @Html.ValidationMessageFor(model => model.phone)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date)
+                @Html.ValidationMessageFor(model => model.Date)
             </div>
         </div>
 

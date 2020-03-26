@@ -22,6 +22,7 @@ namespace StudentManagementSystem.Models
         public int id { get; set; }
         public string course1 { get; set; }
         public Nullable<int> duration { get; set; }
+        public Nullable<bool> IsSelected { get; set; }
     
         public virtual ICollection<Registration> Registrations { get; set; }
     }

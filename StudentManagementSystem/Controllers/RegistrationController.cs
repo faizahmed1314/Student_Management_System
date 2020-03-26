@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
 using StudentManagementSystem.Models;
@@ -39,8 +40,22 @@ namespace StudentManagementSystem.Controllers
         // GET: /Registration/Create
         public ActionResult Create()
         {
-            ViewBag.batch_id = new SelectList(db.Batches, "id", "batch1");
-            ViewBag.course_id = new SelectList(db.Courses, "id", "course1");
+            List<SelectListItem> coursSelectListItems=new List<SelectListItem>();
+            foreach (Course course in db.Courses)
+            {
+                SelectListItem selectListItem = new SelectListItem()
+                {
+                    Text = course.course1,
+                    Value = course.id.ToString(),
+                    Selected = course.IsSelected.HasValue ? course.IsSelected.Value : false
+                };
+                coursSelectListItems.Add(selectListItem);
+            }
+            
+            ViewBag.course_id = coursSelectListItems;
+
+            ViewBag.batch_id = new SelectList(db.Batches, "id", "batch1", "1");
+
             return View();
         }
 
@@ -49,7 +64,7 @@ namespace StudentManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="id,firstname,lastname,nic,batch_id,course_id,phone")] Registration registration)
+        public ActionResult Create([Bind(Include="id,firstname,lastname,nic,Date,batch_id,course_id,phone")] Registration registration)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +73,7 @@ namespace StudentManagementSystem.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.batch_id = new SelectList(db.Batches, "id", "batch1", registration.batch_id);
+            ViewBag.batch_id = new SelectList(db.Batches, "id", "batch1",registration.batch_id);
             ViewBag.course_id = new SelectList(db.Courses, "id", "course1", registration.course_id);
             return View(registration);
         }
@@ -85,7 +100,7 @@ namespace StudentManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,firstname,lastname,nic,batch_id,course_id,phone")] Registration registration)
+        public ActionResult Edit([Bind(Include="id,firstname,lastname,nic,Date,batch_id,course_id,phone")] Registration registration)
         {
             if (ModelState.IsValid)
             {
