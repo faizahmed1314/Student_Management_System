@@ -89,7 +89,7 @@ namespace StudentManagementSystem.Controllers
             return View(course);
         }
 
-        // GET: /Course/Delete/5
+         //GET: /Course/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace StudentManagementSystem.Controllers
             return View(course);
         }
 
-        // POST: /Course/Delete/5
+         //POST: /Course/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -114,6 +114,8 @@ namespace StudentManagementSystem.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        
 
         protected override void Dispose(bool disposing)
         {

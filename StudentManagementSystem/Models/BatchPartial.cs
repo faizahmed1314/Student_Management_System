@@ -16,6 +16,8 @@ namespace StudentManagementSystem.Models
         [Display(Name = "Batch")]
         [Required(ErrorMessage = "Batch field is required!")]
         public string batch1 { get; set; }
+
+
         [Display(Name = "Year")]
         public Nullable<int> year { get; set; }
     }

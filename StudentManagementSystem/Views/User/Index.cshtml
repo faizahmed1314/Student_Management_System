@@ -1,47 +1,66 @@
 ﻿@model IEnumerable<StudentManagementSystem.Models.User>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
+
+<h2>All Users</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-bordered table-responsive table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.firstname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.username)
-        </th>
-        
-        <th>Action</th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.firstname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.username)
-        </td>
+@using (Html.BeginForm("Delete", "User", FormMethod.Post))
+{
+    <table class="table table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <td>
+                   <input type="checkbox" id="CheckAll"/>
+                </td>
+                <th>
+                    <b>First Name</b>
+                </th>
+                <th>
+                    <b>Last Name</b>
+                </th>
+                <th>
+                    <b>User Name</b>
+                </th>
+
+                <th>Password</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @*The MVC will bind autometic the editor template*@
+            @Html.EditorForModel()
+        </tbody>
         
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
+
+        @*@foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.id })
+                </td>
+            </tr>*@
+
+
+    </table>
+    <input type="submit" id="btnSubmit" value="Delete Selected Item" class="btn btn-danger" />
 }
-
-</table>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" language="javascript">
+ 
+</script>
+<script src="~/Scripts/User/IndexScripts.js"></script>

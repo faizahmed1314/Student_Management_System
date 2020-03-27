@@ -18,6 +18,7 @@ namespace StudentManagementSystem.Models
         [Display(Name = "Course")]
         [Required(ErrorMessage = "Course field is required!")]
         public string course1 { get; set; }
+
         [DisplayName("Duration")]
         public Nullable<int> duration { get; set; }
     }
