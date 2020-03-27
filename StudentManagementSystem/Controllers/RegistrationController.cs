@@ -18,19 +18,44 @@ namespace StudentManagementSystem.Controllers
         private StudentManagementSystemEntities db = new StudentManagementSystemEntities();
 
         // GET: /Registration/
-        public ActionResult Index(string searchBy, string search,int? page)
+        public ActionResult Index(string searchBy, string search,int? page, string sortBy)
         {
+            //Sorting by name and gender
+            ViewBag.SortNamePerameter = string.IsNullOrEmpty(sortBy) ? "Name Desc" : "";
+            ViewBag.SortGenderPerameter = sortBy=="Gender" ? "Gender Desc" : "Gender";
+
+            var registrations = db.Registrations.AsQueryable();
             
-            //include paging to show the index value
 
             if (searchBy == "Gender")
             {
-                return View(db.Registrations.Where(x => x.gender == search || search == null).ToList().ToPagedList(page ?? 1,3));
+                registrations = registrations.Where(x => x.gender == search || search == null);
+               
             }
             else
             {
-                return View(db.Registrations.Where(x=>x.firstname.StartsWith(search)|| search==null).ToList().ToPagedList(page ?? 1,3));
+                registrations = registrations.Where(x => x.firstname.StartsWith(search) || search == null);
             }
+            switch (sortBy)
+            {
+                case "Name Desc":
+                    registrations = registrations.OrderByDescending(x => x.firstname);
+                    break;
+                case "Gender Desc":
+                    registrations = registrations.OrderByDescending(x => x.gender);
+                    break;
+                case "Gender":
+                    registrations = registrations.OrderBy(x => x.gender);
+                    break;
+                    //By default the index action method sorted by name with ascending order
+                    default:
+                    registrations = registrations.OrderBy(x => x.firstname);
+                    break;
+            }
+            //include paging to show the index value
+
+            return View(registrations.ToPagedList(page ?? 1, 3));
+
             //var registrations = db.Registrations.Include(r => r.Batch).Include(r => r.Course);
             //return View(registrations.ToList());
         }

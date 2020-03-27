@@ -28,7 +28,7 @@
 <table class="table table-bordered table-responsive">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.First().firstname)
+            @Html.ActionLink("FirstName", "Index", new { sortBy = ViewBag.SortNamePerameter , searchBy=Request.QueryString["searchBy"], search=Request["search"]})
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().lastname)
@@ -47,7 +47,7 @@
         </th>
    
         <th>
-            @Html.DisplayNameFor(model => model.First().gender)
+            @Html.ActionLink("Gender", "Index", new { sortBy = ViewBag.SortGenderPerameter, searchBy = Request.QueryString["searchBy"], search = Request["search"] })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().email)
@@ -118,7 +118,8 @@
     page,
     @*for remembaring previous state and showing the accurate result*@
     searchBy=Request.QueryString["searchBy"],
-    search=Request.QueryString["search"]
+    search=Request.QueryString["search"],
+    sortBy=Request.QueryString["sortBy"]
 }),
 @*In the first page i don't wanted to show first page number and see the current number of page and item number from total number*@
 new PagedListRenderOptions(){Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true,DisplayItemSliceAndTotal = true})

@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-bordered table-responsive table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.firstname)
@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.username)
         </th>
         
-        <th></th>
+        <th>Action</th>
     </tr>
 
 @foreach (var item in Model) {

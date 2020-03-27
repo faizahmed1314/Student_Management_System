@@ -9,7 +9,7 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-    <table  class="table">
+    <table  class="table table-bordered table-responsive table-striped">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.course1)
@@ -17,7 +17,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.duration)
             </th>
-            <th></th>
+            <th>Action</th>
         </tr>
 
         @foreach (var item in Model)
