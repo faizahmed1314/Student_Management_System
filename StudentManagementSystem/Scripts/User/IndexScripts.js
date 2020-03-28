@@ -1,16 +1,5 @@
-﻿//$(function () {
-//    $("#CheckAll").click(function () {
-//        $("input[name='userToDelete']").attr("checked", this.checked);
-//    });
-//    $("input[name='userToDelete']").click(function () {
-//        if ($("input[name='userToDelete']").length == $("input[name='userToDelete']:checked").length) {
-//            $("#CheckAll").attr("checked", "checked");
-//        } else {
-//            $("#CheckAll").removeAttr("checked");
-//        }
-//    });
-//});
-
+﻿
+//Javascript for using check box
 
 $(function() {
     $("#CheckAll").click(function() {

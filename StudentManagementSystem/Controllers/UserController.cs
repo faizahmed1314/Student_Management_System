@@ -48,6 +48,11 @@ namespace StudentManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="id,firstname,lastname,username,password")] User user)
         {
+            //check if user name already exist and if it does, add Model validation error
+            if (db.Users.Any(x => x.username == user.username))
+            {
+                ModelState.AddModelError("username","User name already exist!");
+            }
             if (ModelState.IsValid)
             {
                 db.Users.Add(user);
@@ -125,6 +130,11 @@ namespace StudentManagementSystem.Controllers
                 db.SaveChanges();
             }
             return RedirectToAction("Index");
+        }
+
+        public JsonResult IsUserNameExist(string userName)
+        {
+            return Json(!db.Users.Any(x => x.username == userName), JsonRequestBehavior.AllowGet);
         }
         protected override void Dispose(bool disposing)
         {

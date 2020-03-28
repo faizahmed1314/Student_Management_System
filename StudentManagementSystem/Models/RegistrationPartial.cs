@@ -19,10 +19,12 @@ namespace StudentManagementSystem.Models
         [HiddenInput(DisplayValue = false)]
         public int id { get; set; }
 
+        [RegularExpression(@"^(([A-za-z]+[\s]{1}[A-za-z]+)|([A-Za-z]+))$", ErrorMessage = "Please enter upper case and lower case charecter only!")]
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "First name is required!")]
         public string firstname { get; set; }
 
+        [RegularExpression(@"^(([A-za-z]+[\s]{1}[A-za-z]+)|([A-Za-z]+))$", ErrorMessage = "Please enter upper case and lower case charecter only!")]
         [Display(Name = "Last Name")]
         [Required(ErrorMessage = "Last name is required!")]
         public string lastname { get; set; }
@@ -63,6 +65,7 @@ namespace StudentManagementSystem.Models
         [DataType(DataType.Currency)]
         public int? salary { get; set; }
 
+        [RegularExpression(@"^[\w-\._\+%]+@(?:[\w-]+\.)+[\w]{2,6}$", ErrorMessage = "Please enter a valid email address")]
         [DisplayName("Email")]
         [DataType(DataType.EmailAddress)]
         public string email { get; set; }

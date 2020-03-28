@@ -13,14 +13,14 @@
     <div class="form-horizontal">
         <h4>Registration</h4>
         <hr />
-        @Html.ValidationSummary(true)
+        
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.firstname, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.firstname)
-                @Html.ValidationMessageFor(model => model.firstname)
+                @Html.ValidationMessageFor(model => model.firstname,"*")
             </div>
         </div>
 
@@ -28,7 +28,7 @@
             @Html.LabelFor(model => model.lastname, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.lastname)
-                @Html.ValidationMessageFor(model => model.lastname)
+                @Html.ValidationMessageFor(model => model.lastname, "*")
             </div>
         </div>
 
@@ -36,7 +36,7 @@
             @Html.LabelFor(model => model.nic, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.nic)
-                @Html.ValidationMessageFor(model => model.nic)
+                @Html.ValidationMessageFor(model => model.nic, "*")
             </div>
         </div>
 
@@ -68,7 +68,7 @@
             @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Date)
-                @Html.ValidationMessageFor(model => model.Date)
+                @Html.ValidationMessageFor(model => model.Date, "*")
             </div>
         </div>
 
@@ -94,7 +94,7 @@
             @Html.LabelFor(model => model.email, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.email)
-                @Html.ValidationMessageFor(model => model.email)
+                @Html.ValidationMessageFor(model => model.email, "*")
             </div>
         </div>
 
@@ -105,12 +105,21 @@
                 @Html.ValidationMessageFor(model => model.personalWebsite)
             </div>
         </div>
+        <p>
+            <b>
+                @Html.ValidationSummary(false, "Please fix the following errors and than submit the form")
+            </b>
+        </p>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </div>
+        
+       
+            
+        
     </div>
 }
 

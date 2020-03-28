@@ -14,14 +14,14 @@
     <div class="form-horizontal">
         <h4>Course</h4>
         <hr />
-        @Html.ValidationSummary(true)
+        
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
             @Html.LabelFor(model => model.course1, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.course1)
-                @Html.ValidationMessageFor(model => model.course1)
+                @Html.ValidationMessageFor(model => model.course1,"*")
             </div>
         </div>
 
@@ -29,9 +29,14 @@
             @Html.LabelFor(model => model.duration, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.duration)
-                @Html.ValidationMessageFor(model => model.duration)
+                @Html.ValidationMessageFor(model => model.duration,"*")
             </div>
         </div>
+        <p>
+            <b>
+                @Html.ValidationSummary(false, "Please fix the following errors and than submit the form")
+            </b>
+        </p>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
