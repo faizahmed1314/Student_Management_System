@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using StudentManagementSystem.Common;
 
 namespace StudentManagementSystem.Models
 {
@@ -44,12 +45,16 @@ namespace StudentManagementSystem.Models
         [Required(ErrorMessage = "Phone No is required!")]
         public Nullable<int> phone { get; set; }
 
-       //[DisplayFormat(DataFormatString = "{0:d}")]
+        //When range attribute is used with dateTime field, the client side validation isn't work as expected.
+        //[Range(typeof(DateTime), "01/01/2000", "01/01/2020")]
+        [DataRange("10/10/2000")]
+       
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}")]
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm:ss tt}")]
-        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public Nullable<DateTime> Date { get; set; }
 
+        [Range(1,100000)]
         [DisplayName("Salary")]
         [ScaffoldColumn(true)]
         [DataType(DataType.Currency)]
