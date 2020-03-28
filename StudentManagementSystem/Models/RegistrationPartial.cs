@@ -47,7 +47,10 @@ namespace StudentManagementSystem.Models
 
         //When range attribute is used with dateTime field, the client side validation isn't work as expected.
         //[Range(typeof(DateTime), "01/01/2000", "01/01/2020")]
-        [DataRange("10/10/2000")]
+        //custom date attribute added with minimum value
+        //[DataRange("10/10/2000")]
+        //Custom date attribute added from no restriction with current date
+        [CurrentDate]
        
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}")]
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm:ss tt}")]
