@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<StudentManagementSystem.Models.Course>
            
 <div style="font-family: Arial">
-    <table class="table table-bordered table-striped table-responsive" style="background-color: beige">
+    <table id="courseTable" class="table table-bordered table-striped table-responsive" style="background-color: beige">
         <thead>
             <tr>
                 <th>Course</th>
@@ -14,13 +14,7 @@
                     <td>@Html.DisplayFor(m => item.duration)</td>
                 </tr>
             }
-            <tr>
-                <td colspan="2">
-                    <p><b>
-                           Current time: @DateTime.Now.ToLongDateString()
-                       </b></p>
-                </td>
-            </tr>
+           
         </thead>
     </table>
 </div>

@@ -22,11 +22,13 @@ namespace StudentManagementSystem.Controllers
 
         public PartialViewResult Top3()
         {
+            System.Threading.Thread.Sleep(2000);
             var model = db.Courses.OrderByDescending(x => x.duration).Take(3).ToList();
             return PartialView("_CoursePartial", model);
         }
         public PartialViewResult Bottom3()
         {
+            System.Threading.Thread.Sleep(2000);
             var model = db.Courses.OrderBy(x => x.duration).Take(3).ToList();
             return PartialView("_CoursePartial", model);
         }

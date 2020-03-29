@@ -40,6 +40,15 @@
                     </td>
                 </tr>
             }
+            <tr>
+                <td colspan="3">
+                    <p>
+                        <b>
+                            Current time: @DateTime.Now.ToLongDateString()
+                        </b>
+                    </p>
+                </td>
+            </tr>
 
         </table>
     </div>
@@ -49,7 +58,11 @@
         {
             HttpMethod = "GET",
             UpdateTargetId = "divCourses",
-            InsertionMode = InsertionMode.Replace
+            InsertionMode = InsertionMode.Replace,
+            LoadingElementId = "loadingDiv",
+            OnBegin = "ClearResult",
+            OnSuccess = "CountRow",
+            LoadingElementDuration = 1000
         })
 
         <span style="color: black">|</span>
@@ -58,13 +71,30 @@
         {
             HttpMethod = "GET",
             UpdateTargetId = "divCourses",
-            InsertionMode = InsertionMode.Replace
+            InsertionMode = InsertionMode.Replace,
+            LoadingElementId = "loadingDiv",
+            OnBegin = "ClearResult",
+            OnSuccess = "CountRow",
+            LoadingElementDuration = 1000
+            
         })
+        <div id="loadingDiv" style="display: none">
+            <img src="~/Photos/loadingGif.png"/>
+        </div>
 
         <div id="divCourses"></div>
 
     </div>
 </div>
+<script type="text/javascript" language="javascript">
+    function ClearResult() {
+        $("#divCourses").empty();
+    }
+
+    function CountRow() {
+        alert($("#courseTable tr").length-1 + " row(s) retrived.");
+    }
+</script>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

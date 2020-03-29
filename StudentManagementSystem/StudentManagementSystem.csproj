@@ -225,6 +225,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Photos\faizAhmed.jpg" />
+    <Content Include="Photos\loadingGif.png" />
     <Content Include="Scripts\Batch\EditScript.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
