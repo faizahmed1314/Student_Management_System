@@ -105,7 +105,7 @@ namespace StudentManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="id,firstname,lastname,nic,Date,batch_id,course_id,phone")] Registration registration)
+        public ActionResult Create([Bind(Include="id,firstname,lastname,nic,Date,batch_id,course_id,phone,gender")] Registration registration)
         {
             if (ModelState.IsValid)
             {
@@ -127,6 +127,7 @@ namespace StudentManagementSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Registration registration = db.Registrations.Find(id);
+            
             if (registration == null)
             {
                 return HttpNotFound();
@@ -136,7 +137,18 @@ namespace StudentManagementSystem.Controllers
             return View(registration);
         }
 
-        // POST: /Registration/Edit/5
+        public List<SelectListItem> GenderSelectListItems()
+        {
+            var selectListItems = new List<SelectListItem>()
+            {
+                new SelectListItem() {Text = "Male", Value = "Male"},
+                new SelectListItem() {Text = "Female", Value = "Female"}
+
+            };
+            return selectListItems;
+        }
+
+            // POST: /Registration/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]

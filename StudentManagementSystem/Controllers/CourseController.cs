@@ -20,6 +20,17 @@ namespace StudentManagementSystem.Controllers
             return View(db.Courses.ToList());
         }
 
+        public PartialViewResult Top3()
+        {
+            var model = db.Courses.OrderByDescending(x => x.duration).Take(3).ToList();
+            return PartialView("_CoursePartial", model);
+        }
+        public PartialViewResult Bottom3()
+        {
+            var model = db.Courses.OrderBy(x => x.duration).Take(3).ToList();
+            return PartialView("_CoursePartial", model);
+        }
+
         // GET: /Course/Details/5
         public ActionResult Details(int? id)
         {

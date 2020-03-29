@@ -1,0 +1,26 @@
+﻿@model IEnumerable<StudentManagementSystem.Models.Course>
+           
+<div style="font-family: Arial">
+    <table class="table table-bordered table-striped table-responsive" style="background-color: beige">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Month</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m=>item.course1)</td>
+                    <td>@Html.DisplayFor(m => item.duration)</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="2">
+                    <p><b>
+                           Current time: @DateTime.Now.ToLongDateString()
+                       </b></p>
+                </td>
+            </tr>
+        </thead>
+    </table>
+</div>

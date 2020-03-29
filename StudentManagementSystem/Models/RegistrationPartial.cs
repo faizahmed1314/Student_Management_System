@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +13,8 @@ namespace StudentManagementSystem.Models
     [MetadataType(typeof(RegistrationMetaData))]
     public partial class Registration
     {
+        [NotMapped]
+        public List<SelectListItem> GenderLookUp { set; get; } 
     }
 
     public class RegistrationMetaData
@@ -74,5 +77,8 @@ namespace StudentManagementSystem.Models
         [DataType(DataType.Url)]
         [UIHint("OpenInNewWindow")]
         public string personalWebsite { get; set; }
+
+       
+       
     }
 }

@@ -9,33 +9,62 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-bordered">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.course1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.duration)
-        </th>
-        
-        <th>Action</th>
-    </tr>
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-bordered" style="background-color: beige">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.course1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.duration)
+                </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.course1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.duration)
-        </td>
-        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+                <th>Action</th>
+            </tr>
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.course1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.duration)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h3 style="color:teal">Search course by minimum and maximum time duration</h3>
+        @Ajax.ActionLink("Top 3","Top3",new AjaxOptions()
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "divCourses",
+            InsertionMode = InsertionMode.Replace
+        })
+
+        <span style="color: black">|</span>
+
+        @Ajax.ActionLink("Bottom 3", "Bottom3", new AjaxOptions()
+        {
+            HttpMethod = "GET",
+            UpdateTargetId = "divCourses",
+            InsertionMode = InsertionMode.Replace
+        })
+
+        <div id="divCourses"></div>
+
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

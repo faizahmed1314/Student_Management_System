@@ -84,11 +84,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.gender, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Gender",new List<SelectListItem>
-                {
-                    new SelectListItem(){Text = "Male", Value = "1"},
-                    new SelectListItem(){Text = "Female", Value = "2"}
-                }, "Select Gender")
+                <select name="gender">
+                    <option value="">---Select Gender----</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
                 @Html.ValidationMessageFor(model => model.gender)
             </div>
         </div>
