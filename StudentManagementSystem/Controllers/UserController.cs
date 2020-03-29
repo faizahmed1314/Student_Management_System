@@ -49,10 +49,10 @@ namespace StudentManagementSystem.Controllers
         public ActionResult Create([Bind(Include="id,firstname,lastname,username,password")] User user)
         {
             //check if user name already exist and if it does, add Model validation error
-            if (db.Users.Any(x => x.username == user.username))
-            {
-                ModelState.AddModelError("username","User name already exist!");
-            }
+            //if (db.Users.Any(x => x.username == user.username))
+            //{
+            //    ModelState.AddModelError("username","User name already exist!");
+            //}
             if (ModelState.IsValid)
             {
                 db.Users.Add(user);
