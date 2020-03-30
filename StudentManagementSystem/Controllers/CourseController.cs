@@ -20,7 +20,7 @@ namespace StudentManagementSystem.Controllers
             return View(db.Courses.ToList());
         }
 
-        public PartialViewResult Top3()
+        public PartialViewResult Top3() 
         {
             System.Threading.Thread.Sleep(2000);
             var model = db.Courses.OrderByDescending(x => x.duration).Take(3).ToList();

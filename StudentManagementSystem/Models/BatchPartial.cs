@@ -9,6 +9,8 @@ namespace StudentManagementSystem.Models
     [MetadataType(typeof(BatchMetaData))]
     public partial class Batch
     {
+       
+
     }
 
     public class BatchMetaData

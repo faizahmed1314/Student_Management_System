@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using StudentManagementSystem.Models;
 
 namespace StudentManagementSystem.Controllers
@@ -18,6 +19,37 @@ namespace StudentManagementSystem.Controllers
         public ActionResult Index()
         {
             return View(db.Batches.ToList());
+        }
+        [HttpPost]
+        public ActionResult Index(string searchTerm)
+        {
+            List<Batch> datalist;
+
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                datalist = db.Batches.ToList();
+            }
+            else
+            {
+                datalist = db.Batches.Where(x => x.batch1.StartsWith(searchTerm)).ToList();
+            }
+            return View(datalist);
+        }
+
+        
+        public JsonResult GetBatches(string searchTerm)
+        {
+            //In the search text box we dont want batch object, we just want to return list of string that will contain the name of the batch
+
+            var datalist = db.Batches.Where(x => x.batch1.StartsWith(searchTerm)).Select(x => x.batch1).ToList();
+            return Json(datalist, JsonRequestBehavior.AllowGet);
+
+            //List<BatchModel> datalist = db.Batches.Where(x => x.batch1.Contains(searchTerm)).Select(x => new BatchModel
+            //{
+            //    id = x.id,
+            //    batch1 = x.batch1
+            //}).ToList();
+            //return new JsonResult{Data = datalist,JsonRequestBehavior =JsonRequestBehavior.AllowGet};
         }
 
         // GET: /Batch/Details/5
